@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+application_default_credentials.json
+../.idea/misc.xml
