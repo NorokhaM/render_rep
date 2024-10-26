@@ -11,6 +11,10 @@
   background:rgba(0,0,0,0.8);
 }
 
+.disabled {
+  display: none;
+}
+
 .popup_window {
   display: flex;
   flex-direction: column;
@@ -22,6 +26,7 @@
   width: 350px;
   height: 100%;
   background-color: #eee;
+
   // padding-bottom: 15px;
 }
 
@@ -37,5 +42,7 @@
 
 .chat {
   padding: 15px 15px;
+  margin-bottom: 10px;
   height: 100%;
+  overflow-y: auto;
 }

@@ -6,6 +6,7 @@ import { FC, useState } from "react"
 
 const Sidepanel: FC = () => {
   const [messages, setMessages] = useState<{text:string, isUser:boolean}[]>([]);
+  const [isOn, setIsOn] = useState<boolean>(true);
 
     const handleSendMessage = async (message:string) => {
         if (!message.trim()) return; // Проверка на пустое сообщение
@@ -33,9 +34,12 @@ const Sidepanel: FC = () => {
     };
 
   return (
-    <div className={style.background}>
+    <div className={isOn ? style.background : style.disabled} onClick={() => setIsOn(true)}>
       <div className={style.popup_window}>
         <header className={style.header}>
+          <button>
+
+          </button>
           AI Poradca
         </header>
         <div className={style.chat}>
