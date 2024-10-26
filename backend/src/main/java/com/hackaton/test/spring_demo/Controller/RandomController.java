@@ -1,6 +1,7 @@
-package com.hackaton.test.spring_demo;
+package com.hackaton.test.spring_demo.Controller;
 
 
+import com.hackaton.test.spring_demo.model.Country;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
