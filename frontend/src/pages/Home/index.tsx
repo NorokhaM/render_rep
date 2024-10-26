@@ -1,12 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Header from "../../components/Header";
-import Popup from "../../components/Sidepanel";
+import Sidepanel from "../../components/Sidepanel";
+import OpenChat from "../../components/OpenChat";
 
 const Home: FC = () => {
+  const [isOn, setIsOn] = useState<boolean>(true);
+
   return (
     <>
       <Header />
-      <Popup />
+      <Sidepanel isOn={isOn} setIsOn={setIsOn}/>
+
+      <OpenChat isOn={isOn} setIsOn={setIsOn}/>
     </>
   );
 };

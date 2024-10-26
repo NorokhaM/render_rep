@@ -9,7 +9,7 @@ type MessageBoxProps = {
 const MessageBox: FC<MessageBoxProps> = ({isUser, children}) => {
   return (
     <div className={isUser ? `${style.box} ${style.user}` : `${style.box} ${style.bot}`}>
-      {children}
+      {children} 
     </div>
   )
 }

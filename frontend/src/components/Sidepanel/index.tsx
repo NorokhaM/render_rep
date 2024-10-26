@@ -4,37 +4,47 @@ import MessageBox from "../MessageBox"
 import InputField from "../InputField"
 import { FC, useState } from "react"
 
-const Sidepanel: FC = () => {
+type SidepanelProps = {
+  isOn: boolean;
+  setIsOn: (new_state: boolean) => any;
+}
+
+const Sidepanel: FC<SidepanelProps> = ({isOn, setIsOn}) => {
   const [messages, setMessages] = useState<{text:string, isUser:boolean}[]>([]);
-  const [isOn, setIsOn] = useState<boolean>(true);
 
-    const handleSendMessage = async (message:string) => {
-        if (!message.trim()) return; // Проверка на пустое сообщение
+  const handleBackdropClick = (e: any) => {
+    if ((e.target) === e.currentTarget) {
+        setIsOn(false); // Закрываем модалку при клике на бекдроп
+    }
+  };
 
-        // Добавляем сообщение пользователя в список
-        setMessages((prevMessages) => [...prevMessages, { text: message, isUser: true }]);
+  const handleSendMessage = async (message:string) => {
+    if (!message.trim()) return; // Проверка на пустое сообщение
 
-        try {
-            const response = await fetch('/api/v1/vertexai/multiturn', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message })
-            });
+    // Добавляем сообщение пользователя в список
+    setMessages((prevMessages) => [...prevMessages, { text: message, isUser: true }]);
 
-            if (response.ok) {
-                const data = await response.json();
-                // Добавляем ответ бота в список сообщений
-                setMessages((prevMessages) => [...prevMessages, { text: data.reply, isUser: false }]);
-            } else {
-                setMessages((prevMessages) => [...prevMessages, { text: 'Ошибка сервера.', isUser: false }]);
-            }
-        } catch (error) {
-            setMessages((prevMessages) => [...prevMessages, { text: 'Ошибка подключения.', isUser: false }]);
-        }
-    };
+    try {
+      const response = await fetch('/api/v1/vertexai/multiturn', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Добавляем ответ бота в список сообщений
+        setMessages((prevMessages) => [...prevMessages, { text: data.reply, isUser: false }]);
+      } else {
+        setMessages((prevMessages) => [...prevMessages, { text: 'Ошибка сервера.', isUser: false }]);
+      }
+    } catch (error) {
+      setMessages((prevMessages) => [...prevMessages, { text: 'Ошибка подключения.', isUser: false }]);
+    }
+  };
 
   return (
-    <div className={isOn ? style.background : style.disabled} onClick={() => setIsOn(true)}>
+    <div className={isOn ? style.background : style.disabled} onClick={handleBackdropClick}>
       <div className={style.popup_window}>
         <header className={style.header}>
           <button>
