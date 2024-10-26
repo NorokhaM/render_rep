@@ -1,4 +1,4 @@
-package com.hackaton.test.spring_demo;
+package com.hackaton.test.spring_demo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
