@@ -50,10 +50,10 @@ const Sidepanel: FC<SidepanelProps> = ({isOn, setIsOn}) => {
         // Добавляем ответ бота в список сообщений
         setMessages((prevMessages) => [...prevMessages, { text: data.reply, isUser: false }]);
       } else {
-        setMessages((prevMessages) => [...prevMessages, { text: 'Ошибка сервера.', isUser: false }]);
+        setMessages((prevMessages) => [...prevMessages, { text: 'chyba servera.', isUser: false }]);
       }
     } catch (error) {
-      setMessages((prevMessages) => [...prevMessages, { text: 'Ошибка подключения.', isUser: false }]);
+      setMessages((prevMessages) => [...prevMessages, { text: 'chyba pripojenia.', isUser: false }]);
     }
   };
 
