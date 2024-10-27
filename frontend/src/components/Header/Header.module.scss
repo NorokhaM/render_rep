@@ -11,6 +11,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10px 20px 0;
 }
 
 .central_part {
@@ -29,6 +30,11 @@
 .search_bar {
   width: 450px;
   transition: all 0.1s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
 }
 
 @media (max-width: 1024px) {
@@ -43,11 +49,38 @@
   padding: 0 12px;
   border: 2px solid #000;
   display: flex;
+  border-right: 0;
 }
 
 .search_bar > button {
   display: inline;
+  padding: 0 2px;
+  height: 28px;
   position: relative;
   right: 0;
+  border: 2px solid #000;
+  background-color: #000;
+}
 
+.search_bar > button > svg {
+  color:#eee;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.cabinet_cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.human_icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.cart_icon {
+  width: 2.1em;
+  height: 2.1em;
 }

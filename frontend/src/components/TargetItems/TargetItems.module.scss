@@ -1,0 +1,12 @@
+.categories_wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  align-items: center;
+  justify-items: center;
+  cursor: pointer;
+}
+
+.target_items {
+  padding: 0 20px;
+}

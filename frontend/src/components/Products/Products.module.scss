@@ -1,0 +1,8 @@
+.products_wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  max-width: 950px;
+  padding: 30px 50px;
+  margin: 0 auto;
+}

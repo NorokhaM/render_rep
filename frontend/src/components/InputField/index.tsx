@@ -13,13 +13,19 @@ const InputField: FC<InputFieldProps> = ({onSendMessage}) => {
         onSendMessage(message);
         setMessage(''); // Очищаем поле ввода
     }
-};
+  };
 
+  const handleEnter = (event: any) => {
+    if (event.key === 'Enter' && message.trim()) {
+      onSendMessage(message);
+      setMessage('');
+    }
+  }
 
   return (
     <div className={style.box}>
-      <input placeholder="Type your question..." type="text" value={message} onChange={(e) => setMessage(e.target.value)}/>
-      <button onClick={handleSend}>
+      <input placeholder="Type your question..." type="text" value={message} onKeyDown={handleEnter} onChange={(e) => setMessage(e.target.value)}/>
+      <button className={style.button} onClick={handleSend}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"

@@ -1,10 +1,10 @@
 .container {
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 20px;
+  right: 20px;
   background-color: rgb(255, 68, 16);
-  width: 50px;
-  height: 50px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
 
   display: flex;
@@ -22,7 +22,7 @@
 
 .container:hover {
   transform: scale(1.1);
-  background-color: rgb(230, 68, 16);
+  background-color: rgb(255, 86, 39);
 }
 
 .disabled {

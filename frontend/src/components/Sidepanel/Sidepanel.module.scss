@@ -3,16 +3,21 @@
   justify-content: flex-end;
   align-items: center;
 
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background:rgba(0,0,0,0.8);
+  background-color:rgba(0,0,0,0.8);
+
+  transition: background-color 10.3 ease;
 }
 
 .disabled {
-  display: none;
+  opacity: 0;
+  background-color: rgba( 0,0,0,0.0);
+  z-index: -999;
+  position: absolute;
 }
 
 .popup_window {
@@ -20,14 +25,21 @@
   flex-direction: column;
   justify-content: space-between;
 
-  position: relative;
+  position: fixed;
   right: 0;
   top: 0;
   width: 350px;
   height: 100%;
   background-color: #eee;
+  transform: translateX(0);
+
+  transition: transform 0.3s ease;
 
   // padding-bottom: 15px;
+}
+
+.hidden {
+  transform: translateX(100%);
 }
 
 .header {
@@ -45,4 +57,42 @@
   margin-bottom: 10px;
   height: 100%;
   overflow-y: auto;
+}
+
+.exit_button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.2s ease;
+}
+
+.exit_button:hover {
+  transform: scale(1.1); /* Увеличение при наведении */
+}
+
+.exit_button::before,
+.exit_button::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.exit_button::before {
+  transform: rotate(45deg);
+}
+
+.exit_button::after {
+  transform: rotate(-45deg);
 }

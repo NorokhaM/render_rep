@@ -2,11 +2,11 @@ import style from "./Sidepanel.module.scss"
 
 import MessageBox from "../MessageBox"
 import InputField from "../InputField"
-import { FC, useState } from "react"
+import { FC, useState, useEffect } from "react"
 
 type SidepanelProps = {
   isOn: boolean;
-  setIsOn: (new_state: boolean) => any;
+  setIsOn: (new_state: boolean) => void;
 }
 
 const Sidepanel: FC<SidepanelProps> = ({isOn, setIsOn}) => {
@@ -18,6 +18,20 @@ const Sidepanel: FC<SidepanelProps> = ({isOn, setIsOn}) => {
     }
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOn(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [setIsOn]);
+
   const handleSendMessage = async (message:string) => {
     if (!message.trim()) return; // Проверка на пустое сообщение
 
@@ -25,7 +39,7 @@ const Sidepanel: FC<SidepanelProps> = ({isOn, setIsOn}) => {
     setMessages((prevMessages) => [...prevMessages, { text: message, isUser: true }]);
 
     try {
-      const response = await fetch('/api/v1/vertexai/multiturn', {
+      const response = await fetch('https://demo-deployment-f1qn.onrender.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message })
@@ -45,10 +59,9 @@ const Sidepanel: FC<SidepanelProps> = ({isOn, setIsOn}) => {
 
   return (
     <div className={isOn ? style.background : style.disabled} onClick={handleBackdropClick}>
-      <div className={style.popup_window}>
+      <div className={isOn ? style.popup_window : style.hidden}>
         <header className={style.header}>
-          <button>
-
+          <button className={style.exit_button} onClick={() => setIsOn(false)}>
           </button>
           AI Poradca
         </header>
